@@ -3,3 +3,4 @@
 ## Authors:
 - Vaishnavi Basutkar
 - Siddharth Chandel
+- Bhargavi Sharma
