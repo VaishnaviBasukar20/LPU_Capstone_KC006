@@ -1,7 +1,7 @@
 # LPU_Capstone_KC006
 
 ## Authors:
-- Vaishnavi Basuthkar
+- Vaishnavi Basutkar
 - Siddharth Chandel
 - Mrityunjay Gupta
 - Abhinav Samkaria
