@@ -5,4 +5,3 @@
 - Siddharth Chandel
 - Mrityunjay Gupta
 - Abhinav Samkaria
-- Bhargavi Sharma
