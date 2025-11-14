@@ -1,0 +1,7 @@
+{
+  "name": "EmoTutor",
+  "description": "A browser-injected overlay system that captures faces from video calls, detects emotions via a backend, and displays real-time AI feedback.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

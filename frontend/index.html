@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EmoTutor Overlay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <style>
+      body {
+        background-color: #1a202c;
+        color: #e2e8f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      #video-container {
+        border: 2px dashed #4a5568;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        min-height: 516px; /* 480px video + padding */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      video {
+        border-radius: 0.5rem;
+        transform: scaleX(-1); /* Mirror effect */
+      }
+      h2 {
+        margin-bottom: 1rem;
+        font-weight: 600;
+        text-align: center;
+      }
+      #video-container p {
+        text-align: center;
+        color: #a0aec0;
+        max-width: 600px;
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "vite": "https://aistudiocdn.com/vite@^7.2.2",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    
+    <div id="video-container">
+      <h2>Webcam Feed for Testing</h2>
+      <video id="webcam" width="640" height="480" autoplay playsinline muted></video>
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+
+    <script>
+      // Access webcam and stream it to the video element with robust error handling
+      async function setupWebcam() {
+        const videoElement = document.getElementById('webcam');
+        const container = document.getElementById('video-container');
+        try {
+          container.querySelector('h2').innerText = 'Requesting camera access...';
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          videoElement.srcObject = stream;
+          videoElement.onloadedmetadata = () => {
+            // Restore title once video is playing
+            container.querySelector('h2').innerText = 'Webcam Feed for Testing';
+          }
+        } catch (err) {
+          console.error("Error accessing webcam: ", err);
+          let errorMessage = '<h2>Could Not Access Webcam</h2>';
+          if (err.name === "NotAllowedError") {
+            errorMessage += '<p>Camera access was denied. Please enable it in your browser settings for this site and then refresh the page.</p>';
+          } else if (err.name === "NotFoundError") {
+            errorMessage += '<p>No camera was found on your device. Please ensure a webcam is connected and enabled.</p>';
+          } else {
+            errorMessage += '<p>An unexpected error occurred. Please check that another application isn\'t using the camera and refresh the page.</p>';
+          }
+          container.innerHTML = errorMessage;
+        }
+      }
+      setupWebcam();
+    </script>
+  </body>
+</html>
