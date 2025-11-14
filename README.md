@@ -147,6 +147,8 @@ flowchart LR
 
 ---
 
+![Architecture](./screenshots/architecture.jpeg)
+
 ## 📸 Screenshots
 
 > The repository already contains the screenshots in the ./screenshots folder. If you are copying images from a local machine or CI, use the filenames listed below.
