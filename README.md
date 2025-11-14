@@ -1,4 +1,4 @@
-# 🌟 LPU Capstone — KC006
+# 🌟 LPU Capstone — KC007
 
 ### 📘 Project Resources
 
